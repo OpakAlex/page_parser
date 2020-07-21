@@ -5,7 +5,7 @@ defmodule PageParser.CacheTest do
 
   alias PageParser.{Cache, Result}
 
-  describe "#lookup" do
+  describe "lookup" do
     test "returns result from cache if cache exists" do
       Cache.reset(Cache)
       Cache.store(Cache, "https://google.com", %Result{})

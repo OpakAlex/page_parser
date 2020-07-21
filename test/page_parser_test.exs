@@ -6,7 +6,7 @@ defmodule PageParserTest do
 
   import Mock
 
-  describe "#fetch" do
+  describe "fetch" do
     test "returs result from cache" do
       with_mock(Cache, [lookup: fn(_,_) -> %Result{} end, store: fn(_,_,_) -> nil end]) do
         assert PageParser.fetch("https://google.com") == {:ok, %Result{}}
@@ -21,7 +21,7 @@ defmodule PageParserTest do
     end
   end
 
-  describe "#fetch!" do
+  describe "fetch!" do
     test "returs result from cache" do
       with_mock(Cache, [lookup: fn(_,_) -> %Result{} end, store: fn(_,_,_) -> nil end]) do
         assert PageParser.fetch!("https://google.com") == %Result{}

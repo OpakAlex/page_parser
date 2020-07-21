@@ -6,7 +6,7 @@ defmodule PageParser.FetcherTest do
 
   import Mock
 
-  describe "#get" do
+  describe "get" do
     test "returns links and images from page" do
       html_body = File.read!("test/fixtures/exoplanets.nasa.gov.html")
       with_mock(HTTPoison, [get: fn(_,_,_) -> {:ok, %HTTPoison.Response{status_code: 200, body: html_body}} end]) do

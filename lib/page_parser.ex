@@ -52,7 +52,7 @@ defmodule PageParser do
 
   @spec fetch_and_write_to_cache(String.t()) :: {:ok, Result.t()} | {:error, term}
   def fetch_and_write_to_cache(url) do
-    case parse(url) do
+    case fetch_from_web(url) do
       {:error, reason} -> {:error, reason}
       {:ok, result} ->
         Cache.store(PageParser.Cache, url, result)
@@ -66,12 +66,12 @@ defmodule PageParser do
     if cache do
       fetch_from_cache(url)
     else
-      parse(url)
+      fetch_from_web(url)
     end
   end
 
-  @spec parse(String.t()) :: {:ok, Result.t()} | {:error, term}
-  def parse(url) do
+  @spec fetch_from_web(String.t()) :: {:ok, Result.t()} | {:error, term}
+  def fetch_from_web(url) do
     Fetcher.get(url)
   end
 end
